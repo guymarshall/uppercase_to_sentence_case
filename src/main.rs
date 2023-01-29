@@ -11,11 +11,13 @@ fn to_sentence_case(word: String) -> String {
 
 fn main() {
     let input_file = File::open("input.txt").unwrap();
-    let names = BufReader::new(input_file)
+    let mut names = BufReader::new(input_file)
         .lines()
         .map(Result::unwrap)
         .map(to_sentence_case)
         .collect::<Vec<String>>();
+
+    names.sort();
 
     let mut output_file = File::create("output.txt").unwrap();
     for name in names {
