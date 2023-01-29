@@ -1,11 +1,11 @@
 use std::fs::File;
 use std::io::{BufRead, BufReader, Write};
 
-fn to_sentence_case(word: &str) -> String {
+fn to_sentence_case(word: String) -> String {
     let mut chars = word.chars();
     match chars.next() {
         None => String::new(),
-        Some(first_char) => first_char.to_uppercase().chain(chars).collect(),
+        Some(first_char) => first_char.to_uppercase().chain(chars.as_str().to_lowercase().chars()).collect(),
     }
 }
 
